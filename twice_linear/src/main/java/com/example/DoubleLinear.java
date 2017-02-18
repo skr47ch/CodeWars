@@ -13,7 +13,6 @@ class DoubleLinear {
         int y = 0;
 
         list.add(1);
-
         for (;list.size() < n + 1;) {
             int a = 2 * list.get(x) + 1;
             int b = 3 * list.get(y) + 1;
