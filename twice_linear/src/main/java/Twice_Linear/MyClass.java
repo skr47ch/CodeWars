@@ -1,4 +1,4 @@
-package com.example;
+package Twice_Linear;
 
 public class MyClass {
     public static void main(String[] args) {
