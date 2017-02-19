@@ -3,12 +3,9 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by SKR47CH on 2/19/2017.
- */
 class DoubleLinear {
     public static void dblLinear (int n) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<Integer>();
         int x = 0;
         int y = 0;
 
