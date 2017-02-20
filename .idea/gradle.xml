@@ -10,7 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/twice_linear" />
+            <option value="$PROJECT_DIR$/codewars_java" />
           </set>
         </option>
       </GradleProjectSettings>

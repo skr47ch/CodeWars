@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Codewars.iml" filepath="$PROJECT_DIR$/Codewars.iml" />
-      <module fileurl="file://$PROJECT_DIR$/twice_linear/twice_linear.iml" filepath="$PROJECT_DIR$/twice_linear/twice_linear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codewars_java/codewars_java.iml" filepath="$PROJECT_DIR$/codewars_java/codewars_java.iml" />
     </modules>
   </component>
 </project>
