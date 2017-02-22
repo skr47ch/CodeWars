@@ -65,9 +65,20 @@ public class StringMerger {
 
             if ( x >= part1.length() || y >= part2.length()) {
                 pos ++;
-                System.out.println(test);
+                System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
                 break;
             }
+        }
+
+        if (m > 0 && s.charAt(pos) == part1.charAt(x-m)) {
+            x = x - m;
+            m = 0;
+            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
+        }
+        else if (m > 0 && s.charAt(pos) == part2.charAt(y-m)) {
+            y = y - m;
+            m = 0;
+            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
         }
 
         if (x >= part1.length()) {
@@ -77,6 +88,7 @@ public class StringMerger {
             if (!s.substring(pos, s.length()).equals(part1.substring(x, part1.length())))
                 return false;
         }
+        System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
         return true;
     }
 }
