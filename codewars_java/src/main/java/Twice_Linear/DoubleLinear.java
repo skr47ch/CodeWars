@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class DoubleLinear {
-    public static void dblLinear (int n) {
+    public static int dblLinear (int n) {
         List<Integer> list = new ArrayList<Integer>();
         int x = 0;
         int y = 0;
@@ -26,7 +26,6 @@ class DoubleLinear {
                 y ++;
             }
         }
-        System.out.println(list);
-        //return list.get(n);
+        return list.get(n);
     }
 }
