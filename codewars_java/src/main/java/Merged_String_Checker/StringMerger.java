@@ -11,10 +11,6 @@ public class StringMerger {
         int pos = 0;
         List<String> test = new ArrayList<String>();
 
-        int xom = part1.length() + part2.length();
-
-        System.out.println(s.length() + " " + part1.length() + " " + part2.length() + " " + xom);
-
         if (s.length() != part1.length() + part2.length())
             return  false;
 
@@ -27,59 +23,58 @@ public class StringMerger {
             if(part1.equals(s)) return  true;
             else  return false;
         }
-
-        s = s.replace("\\", ",");
-        part1 = part1.replace("\\", ",");
-        part2 = part2.replace("\\", ",");
+//
+//        s = s.replace("\\", ",");
+//        part1 = part1.replace("\\", ",");
+//        part2 = part2.replace("\\", ",");
 
         for (int i = 0; i < s.length(); i ++) {
             pos = i;
 
-            System.out.print("  " + i + " " + m + " " + x + " " + y);
             if (s.charAt(i) == part1.charAt(x)) {
+                x ++;       test.add(Character.toString(part1.charAt(x-1)));
                 if (s.charAt(i) == part2.charAt(y)) {
-                    x++;
-                    y++;
-                    m++;
-                    test.add(Character.toString(s.charAt(i)));
-                    System.out.println(test);
-                } else {
+                    y ++;   test.add(Character.toString(part2.charAt(y-1)));
+                    m ++;
+                }
+                else {
                     if (m > 0) {
                         y -= m;
                         m = 0;
                     }
-                    x++;
-                    test.add(Character.toString(s.charAt(i)));
-                    System.out.println(test);
                 }
-            } else if (s.charAt(i) == part2.charAt(y)) {
+            }
+            else if (s.charAt(i) == part2.charAt(y)) {
+                y ++;   test.add(Character.toString(part2.charAt(y-1)));
                 if (m > 0) {
                     x -= m;
                     m = 0;
                 }
-                y ++;
-                test.add(Character.toString(s.charAt(i)));
-                System.out.println(test);
-            } else return false;
+            }
+            else if (m > 0 && s.charAt(i) == part1.charAt(x-m)) {
+                x = x - m + 1; test.add(Character.toString(part1.charAt(x - 1)));
+                m = 0;
+            }
+            else if (m > 0 && s.charAt(i) == part2.charAt(y-m)) {
+                y = y - m + 1; test.add(Character.toString(part2.charAt(y-1)));
+                m = 0;
+            }
+            else return false;
 
-
+            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
 
             if ( x >= part1.length() || y >= part2.length()) {
-                //pos ++;
+                pos ++;
+                System.out.println(test);
                 break;
             }
         }
-        System.out.println(test);
-        System.out.print("    " + pos  + " " + m + " " + x + " " + y);
-
 
         if (x >= part1.length()) {
-            if (!s.substring(pos + 1, s.length()).equals(part2.substring(y, part2.length())))
+            if (!s.substring(pos, s.length()).equals(part2.substring(y, part2.length())))
                 return false;
-        }
-
-        if (y >= part2.length()) {
-            if (!s.substring(pos + 1, s.length()).equals(part1.substring(x, part1.length())))
+        } else if (y >= part2.length()) {
+            if (!s.substring(pos, s.length()).equals(part1.substring(x, part1.length())))
                 return false;
         }
         return true;
