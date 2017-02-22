@@ -9,7 +9,6 @@ public class StringMerger {
         int x = 0;
         int y = 0;
         int pos = 0;
-        List<String> test = new ArrayList<String>();
 
         if (s.length() != part1.length() + part2.length())
             return  false;
@@ -23,18 +22,13 @@ public class StringMerger {
             if(part1.equals(s)) return  true;
             else  return false;
         }
-//
-//        s = s.replace("\\", ",");
-//        part1 = part1.replace("\\", ",");
-//        part2 = part2.replace("\\", ",");
 
         for (int i = 0; i < s.length(); i ++) {
             pos = i;
-
             if (s.charAt(i) == part1.charAt(x)) {
-                x ++;       test.add(Character.toString(part1.charAt(x-1)));
+                x ++;
                 if (s.charAt(i) == part2.charAt(y)) {
-                    y ++;   test.add(Character.toString(part2.charAt(y-1)));
+                    y ++;
                     m ++;
                 }
                 else {
@@ -45,50 +39,50 @@ public class StringMerger {
                 }
             }
             else if (s.charAt(i) == part2.charAt(y)) {
-                y ++;   test.add(Character.toString(part2.charAt(y-1)));
+                y ++;
                 if (m > 0) {
                     x -= m;
                     m = 0;
                 }
             }
             else if (m > 0 && s.charAt(i) == part1.charAt(x-m)) {
-                x = x - m + 1; test.add(Character.toString(part1.charAt(x - 1)));
+                x = x - m + 1;
                 m = 0;
             }
             else if (m > 0 && s.charAt(i) == part2.charAt(y-m)) {
-                y = y - m + 1; test.add(Character.toString(part2.charAt(y-1)));
+                y = y - m + 1;
                 m = 0;
             }
             else return false;
 
-            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
-
             if ( x >= part1.length() || y >= part2.length()) {
                 pos ++;
-                System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
                 break;
             }
         }
 
-        if (m > 0 && s.charAt(pos) == part1.charAt(x-m)) {
+        if (m > 0 && s.charAt(pos) == part1.charAt(x-m) && (x-m) < part1.length()) {
             x = x - m;
             m = 0;
-            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
         }
         else if (m > 0 && s.charAt(pos) == part2.charAt(y-m)) {
             y = y - m;
             m = 0;
-            System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
         }
 
         if (x >= part1.length()) {
-            if (!s.substring(pos, s.length()).equals(part2.substring(y, part2.length())))
-                return false;
-        } else if (y >= part2.length()) {
-            if (!s.substring(pos, s.length()).equals(part1.substring(x, part1.length())))
-                return false;
+            if(m > 0) {
+                return (s.substring(pos-m).equals(part2.substring(y - m) + part1.substring(x - m)));
+            }
+            else return (!s.substring(pos).equals(part2.substring(y)));
         }
-        System.out.println(test + "  , m = " + m + "  , x = " + x + "  , y = " + y);
+        else if (y >= part2.length()) {
+            if(m > 0) {
+                return (s.substring(pos-m).equals(part1.substring(x - m) + part2.substring(y - m)));
+            }
+            else return (s.substring(pos).equals(part1.substring(x)));
+        }
+
         return true;
     }
 }
