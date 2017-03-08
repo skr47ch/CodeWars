@@ -1,4 +1,4 @@
-package Logic_Detective;
+package Logic_Detective_Not_Solved;
 
 import java.util.ArrayList;
 import java.util.Arrays;
